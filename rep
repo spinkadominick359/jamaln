@@ -1,0 +1,21 @@
+from twilio.rest import Client
+
+# Ваши учетные данные от Twilio
+account_sid = 'Ваш_ACCOUNT_SID'
+auth_token = 'Ваш_AUTH_TOKEN'
+
+# Создание экземпляра клиента Twilio
+client = Client(account_sid, auth_token)
+
+# Функция для отправки SMS-сообщения
+def send_sms(to_phone_number, message):
+    message = client.messages.create(
+        body=message,
+        from_='+Ваш_Twilio_номер',
+        to=to_phone_number
+    )
+    print('SMS отправлено с идентификатором:', message.sid)
+
+# Пример использования
+send_sms('+Номер_получателя', 'Привет! Это автоматическое сообщение от Twilio.')
+
